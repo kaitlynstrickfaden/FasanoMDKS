@@ -4,6 +4,7 @@
 #'
 #' @importFrom dplyr arrange group_by mutate summarize
 #' @importFrom purrr map
+#' @import progress
 #' @param xy A data frame with an "x" and "y" column of paired observations.
 #' @param rands A numeric indicating how many randomizations to perform. Default is 5000.
 #' @param alpha A numeric between 0 and 1 for the desired alpha level. Default is 0.05.
@@ -18,7 +19,7 @@ Fasano_2DKS <- function(xy, rands = 5000, alpha = 0.05) {
     }
 
     if (rands < 2000) {
-        warning("rands < 2000 may not converge")
+        warning("rands < 2000 may not converge", immediate. = T)
     }
 
     if (alpha < 0 | alpha > 1) {
@@ -35,10 +36,14 @@ Fasano_2DKS <- function(xy, rands = 5000, alpha = 0.05) {
 
 
     ## Compute D-values for observed data
-    d_obs <- Fasano_2Dquadrants(xy)  # calculate D-values for observations
+    d_obs <- Fasano_2D_dvals(xy)  # calculate D-values for observations
 
 
     ##### PART 2: p-values for each observation  #####
+
+    # Progress bar for keeping track of analysis
+    pb <- progress_bar$new(format = "Performing randomizations  Estimated completion: :eta  [:bar]  :percent",
+                                  total = rands, clear = F)
 
     d_rand_sum <- 0 # empty list for storing randomizations of data
 
@@ -50,11 +55,13 @@ Fasano_2DKS <- function(xy, rands = 5000, alpha = 0.05) {
 
         xy_rand <- arrange(xy_rand, x)               # sort rows by X in ascending order and append to xy_rand list
 
-        d_rand <- Fasano_2Dquadrants(xy_rand)          # generate D-values for each 'observation'
+        d_rand <- Fasano_2D_dvals(xy_rand)           # generate D-values for each 'observation'
 
         d_rand_max <- max(d_rand)                    # find the maximum D-value for this randomization (the observation that generated this would be the 'threshold')
         d_rand_bigger <- d_rand_max > d_obs    # (functionally) a count of how many observed D-values were >D max from this randomly generated dataset
         d_rand_sum <- d_rand_sum + d_rand_bigger # this list accumulates the above counts from each loop
+
+        pb$tick()
 
     } # end "for" loop
 

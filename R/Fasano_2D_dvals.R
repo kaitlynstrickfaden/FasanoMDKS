@@ -11,7 +11,7 @@
 
 
 ## A function to determine D-values
-Fasano_2Dquadrants <- function(xy) {
+Fasano_2D_dvals <- function(xy) {
 
   if ("x" %in% colnames(xy) == FALSE | "y" %in% colnames(xy) == FALSE) {
     stop("xy must contain an 'x' and 'y' column")
