@@ -6,7 +6,7 @@
 #' @importFrom purrr map
 #' @param xy A data frame with an "x" and "y" column of paired observations.
 #' @param rands A numeric indicating how many randomizations to perform. Default is 5000.
-#' @param alhpa A numeric between 0 and 1 for the desired alpha level. Default is 0.05.
+#' @param alpha A numeric between 0 and 1 for the desired alpha level. Default is 0.05.
 #' @return A data frame of summary values and statistics (the maximum D-value, the x and y values at the maximum D-value, the minimum and maximum x and y values for the statistically-significant observations, and the p-value)
 #' @export
 #'

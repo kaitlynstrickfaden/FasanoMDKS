@@ -1,11 +1,19 @@
 Package: FasanoMDKS
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Fasano Multi-dimensional Kolmogorov-Smirnov Tests
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Authors@R: 
+    person(given = "Kaitlyn",
+            family = "Strickfaden",
+            role = c("aut", "cre"),
+            email = "kaitlyn.strickfaden@gmail.com",
+            comment = c(ORCID = "YOUR-ORCID-ID"))
+Maintainer: Kaitlyn Strickfaden <kaitlyn.strickfaden@gmail.com>
+Description: This package runs multi-dimensional Kolmogorov-Smirnov (KS) tests.
+License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Imports:
+    dplyr,
+    purrr
+RoxygenNote: 7.1.1
