@@ -15,5 +15,6 @@ Encoding: UTF-8
 LazyData: true
 Imports:
     dplyr,
+    progress,
     purrr
 RoxygenNote: 7.1.1
