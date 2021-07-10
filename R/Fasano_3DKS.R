@@ -6,19 +6,21 @@
 #' @importFrom dplyr arrange group_by mutate summarize
 #' @importFrom purrr map
 #' @import progress
-#' @param xyz A data frame with an "x", "y", and "z" column of matched observations.
+#' @param xcol a vector of x values
+#' @param ycol a vector of y values
+#' @param zcol a vector of y values
 #' @param rands A numeric indicating how many randomizations to perform. Default is 5000.
 #' @param alpha A numeric between 0 and 1 for the desired alpha level. Default is 0.05.
 #' @return A data frame of summary values and statistics (the maximum D-value; the x, y, and z values at the maximum D-value; the minimum and maximum x, y, and z values for the statistically-significant observations; and the p-value)
 #' @export
 #'
 
-Fasano_3DKS <- function(xyz, rands = 5000, alpha = 0.05) {
+Fasano_3DKS <- function(xcol, ycol, zcol, rands = 5000, alpha = 0.05) {
 
-  if ("x" %in% colnames(xyz) == FALSE |
-      "y" %in% colnames(xyz) == FALSE |
-      "z" %in% colnames(xyz) == FALSE) {
-    stop("xyz must contain an 'x', 'y', and 'z' column")
+  if (length(xcol) != length(ycol) |
+      length(xcol) != length(zcol) |
+      length(ycol) != length(zcol) ) {
+    stop("xcol, ycol, and zcol must be the same length")
   }
 
   if (rands < 2000) {
@@ -32,16 +34,10 @@ Fasano_3DKS <- function(xyz, rands = 5000, alpha = 0.05) {
 
   ##### PART 1: D-values for each observation (i.e., potential threshold) #####
   ## Set observations as potential thresholds
-  xyz <- arrange(xyz, x)    # sort rows by X in ascending order
-  n <- nrow(xyz)           # sample size
-  xth <- xyz$x             # isolate x column
-  yth <- xyz$y             # isolate y column
-  zth <- xyz$z             # isolate y column
-
+  n <- length(xcol)           # sample size
 
   ## Compute D-values for observed data
-  d_obs <- Fasano_3D_dvals(xyz)  # calculate D-values for observations
-
+  d_obs <- Fasano_3D_dvals(xcol, ycol, zcol)  # calculate D-values for observations
 
   ##### PART 2: p-values for each observation  #####
 
@@ -53,14 +49,11 @@ Fasano_3DKS <- function(xyz, rands = 5000, alpha = 0.05) {
 
   for (r in 1:rands) { # for each randomization (total # set by input value 'rands'):
 
-    xyz_rand <- data.frame(x = rep(0,n), y = rep(0,n), z = rep(0,n)) # empty data frame for re-shuffled X, Y, and Z values
-    xyz_rand$x <- xyz$x[sample(c(1:n), n, replace = T)] # randomly index X-values (with replacement)
-    xyz_rand$y <- xyz$y[sample(c(1:n), n, replace = T)] # randomly index Y-values (with replacement)
-    xyz_rand$z <- xyz$z[sample(c(1:n), n, replace = T)] # randomly index Z-values (with replacement)
+    xrand <- xyz$x[sample(c(1:n), n, replace = T)] # randomly index X-values (with replacement)
+    yrand <- xyz$y[sample(c(1:n), n, replace = T)] # randomly index Y-values (with replacement)
+    zrand <- xyz$z[sample(c(1:n), n, replace = T)] # randomly index Z-values (with replacement)
 
-    xyz_rand <- arrange(xyz_rand, x)               # sort rows by X in ascending order and append to xyz_rand list
-
-    d_rand <- Fasano_3D_dvals(xyz_rand)           # generate D-values for each 'observation'
+    d_rand <- Fasano_3D_dvals(xrand, yrand, zrand)           # generate D-values for each 'observation'
 
     d_rand_max <- max(d_rand)                    # find the maximum D-value for this randomization (the observation that generated this would be the 'threshold')
     d_rand_bigger <- d_rand_max > d_obs    # (functionally) a count of how many observed D-values were >D max from this randomly generated dataset
@@ -76,9 +69,9 @@ Fasano_3DKS <- function(xyz, rands = 5000, alpha = 0.05) {
 
 
   ## Combine results of all potential thresholds
-  xyz_thresh <- data.frame(x = xth,       # true X-values
-                           y = yth,       # true y-values
-                           z = zth,       # true z-values
+  xyz_thresh <- data.frame(x = xcol,       # true X-values
+                           y = ycol,       # true y-values
+                           z = zcol,       # true z-values
                            d_obs = d_obs, # true D-values
                            p = p          # true p-values
   )
