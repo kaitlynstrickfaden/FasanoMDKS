@@ -1,6 +1,7 @@
+
 #' Run a Two-dimensional Kolmogorov-Smirnov Test
 #'
-#' Run a two-dimensional Kolmogorov-Smirnov test as defined by [https://watermark.silverchair.com/mnras225-0155.pdf?token=AQECAHi208BE49Ooan9kkhW_Ercy7Dm3ZL_9Cf3qfKAc485ysgAAAs0wggLJBgkqhkiG9w0BBwagggK6MIICtgIBADCCAq8GCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMgHp1AmsYKnHXNEOdAgEQgIICgM8aZSoVKTeXKk_3u2Q16WV38bdHKZl47PPAZRnydI6VywiYEDK-o9G4LCYrsBtp9W7CQdG-sCouNnAg31KLOaX34sD0cYkMKIc0SELP0rLEkJIMTSsMBRdyn01EmO5hrH9_kGe24VPb9RIQq2LEB31sbzQmAOzwnGAOaPD7rlw0hn8cXxMgYjOpUDkJE9SDb5fhMmrZSOodnBcRAP3pdc_egvoYTnAmUqDSI-5AKHj9pErWPhVrAJ0HkdNTfI1CQLyXAqDSgoD8l109TgAfQAKk7WZ-Z0oP_wNT4ClVKV6cbMEIX1Hszd1JNShLs6qYg38RrZAi8lEAiONfvRnfBFdS7i_easW9jBrt0QWTcno-QopLWUXze6rE7qvyFjiqyB3g-UvKv0P0HOv4DgYw8STmvIZ_0KDh5YMn3y6uPG2nvP8ktudoaY1wZ2WZwE_IoxLRt6WZ0G1o9FOmnLw_tXRosMGKnCgV1YKSbshPC5rKZ8aoHOsmhhUfRxzwLv6ew9Am8M_2wINVaBn9HnGbu8WVRzRjvOlXTEaNk-ZUbTVgsPxCU2H4isCjrWbHXoCVGf4r8lM3a6Pc6oqXl3fIvZwvQmgPt3KgwFZxyqJHsXMJZWXPAZrU8c81EzdQ4816AyRGo8p0MlWmk7ArmBJ_uaOGu3jMGXnLJzJrzTZ3B-nPiLP7ctrfZsFcWipRuhGlWtL9PcKK3FBWa_gSprHUtEW_VHLihVHJOSU59qwoBao2sxsGQbI-3fKVSDofPsn-qgKKgPWtyM_K6CA_fDFjxkyUy7fy1hIm-ix50f9pMVsA8HpSPz4CDC7qywL5yrG8a3AeHzq8H8vesd33rfTuKDg](Fasano and Franceschini 1987). Allows for specification of the number of randomization to perform and the desired alpha level.
+#' Run a two-dimensional Kolmogorov-Smirnov test as defined by [Fasano and Franceschini 1987](https://academic.oup.com/mnras/article/225/1/155/1007281). Allows for specification of the number of randomization to perform and the desired alpha level.
 #'
 #' @importFrom dplyr arrange group_by mutate summarize
 #' @importFrom purrr map
@@ -107,10 +108,10 @@ Fasano_2DKS <- function(xy, rands = 5000, alpha = 0.05) {
     return(data.frame(D_Max     = dmax,
                       Best_X    = best_x,
                       Best_Y    = best_y,
-                      Min_sig_X = lo_x_val,
-                      Max_sig_X = hi_x_val,
-                      Min_sig_Y = lo_y_val,
-                      Max_sig_Y = hi_y_val,
+                      Min_Sig_X = lo_x_val,
+                      Max_Sig_X = hi_x_val,
+                      Min_Sig_Y = lo_y_val,
+                      Max_Sig_Y = hi_y_val,
                       P_Value   = format(round(p_value, 4), nsmall = 4))
     )
 

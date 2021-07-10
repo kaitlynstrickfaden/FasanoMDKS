@@ -2,6 +2,8 @@
 
 export(Fasano_2DKS)
 export(Fasano_2D_dvals)
+export(Fasano_3DKS)
+export(Fasano_3D_dvals)
 import(progress)
 importFrom(dplyr,arrange)
 importFrom(dplyr,group_by)
