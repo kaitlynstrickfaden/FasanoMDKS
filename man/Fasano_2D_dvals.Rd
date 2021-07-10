@@ -4,13 +4,15 @@
 \alias{Fasano_2D_dvals}
 \title{Calculate D-values for a Two-dimensional Kolmogorov-Smirnov Test}
 \usage{
-Fasano_2D_dvals(xy)
+Fasano_2D_dvals(xcol, ycol)
 }
 \arguments{
-\item{xy}{The D-values for each observation as a vector.}
+\item{xcol}{a vector of x values}
+
+\item{ycol}{a vector of y values}
 }
 \value{
-The original data frame with a new "maxdiff" column containing D-values.
+The D-values for each pair of observations as a vector.
 }
 \description{
 Find D-values of observations for a two-dimensional Kolmogorov-Smirnov test as defined by [Fasano and Franceschini 1987](https://academic.oup.com/mnras/article/225/1/155/1007281).

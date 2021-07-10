@@ -2,12 +2,16 @@
 % Please edit documentation in R/Fasano_3DKS.R
 \name{Fasano_3DKS}
 \alias{Fasano_3DKS}
-\title{Run a Two-dimensional Kolmogorov-Smirnov Test}
+\title{Run a Three-dimensional Kolmogorov-Smirnov Test}
 \usage{
-Fasano_3DKS(xyz, rands = 5000, alpha = 0.05)
+Fasano_3DKS(xcol, ycol, zcol, rands = 5000, alpha = 0.05)
 }
 \arguments{
-\item{xyz}{A data frame with an "x", "y", and "z" column of matched observations.}
+\item{xcol}{a vector of x values}
+
+\item{ycol}{a vector of y values}
+
+\item{zcol}{a vector of y values}
 
 \item{rands}{A numeric indicating how many randomizations to perform. Default is 5000.}
 
@@ -17,5 +21,5 @@ Fasano_3DKS(xyz, rands = 5000, alpha = 0.05)
 A data frame of summary values and statistics (the maximum D-value; the x, y, and z values at the maximum D-value; the minimum and maximum x, y, and z values for the statistically-significant observations; and the p-value)
 }
 \description{
-Run a two-dimensional Kolmogorov-Smirnov test as defined by [Fasano and Franceschini 1987](https://academic.oup.com/mnras/article/225/1/155/1007281). Allows for specification of the number of randomization to perform and the desired alpha level.
+Run a three-dimensional Kolmogorov-Smirnov test as defined by [Fasano and Franceschini 1987](https://academic.oup.com/mnras/article/225/1/155/1007281). Allows for specification of the number of randomization to perform and the desired alpha level.
 }

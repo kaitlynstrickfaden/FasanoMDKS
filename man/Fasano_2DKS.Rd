@@ -4,10 +4,12 @@
 \alias{Fasano_2DKS}
 \title{Run a Two-dimensional Kolmogorov-Smirnov Test}
 \usage{
-Fasano_2DKS(xy, rands = 5000, alpha = 0.05)
+Fasano_2DKS(xcol, ycol, rands = 5000, alpha = 0.05)
 }
 \arguments{
-\item{xy}{A data frame with an "x" and "y" column of paired observations.}
+\item{xcol}{a vector of x values}
+
+\item{ycol}{a vector of y values}
 
 \item{rands}{A numeric indicating how many randomizations to perform. Default is 5000.}
 

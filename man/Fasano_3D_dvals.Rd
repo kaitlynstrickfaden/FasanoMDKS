@@ -4,13 +4,17 @@
 \alias{Fasano_3D_dvals}
 \title{Calculate D-values for a Three-dimensional Kolmogorov-Smirnov Test}
 \usage{
-Fasano_3D_dvals(xyz)
+Fasano_3D_dvals(xcol, ycol, zcol)
 }
 \arguments{
-\item{xyz}{The D-values for each observation as a vector.}
+\item{xcol}{a vector of x values}
+
+\item{ycol}{a vector of y values}
+
+\item{zcol}{a vector of y values}
 }
 \value{
-The original data frame with a new "maxdiff" column containing D-values.
+The D-values for each observation as a vector.
 }
 \description{
 Find D-values of observations for a three-dimensional Kolmogorov-Smirnov test as defined by [Fasano and Franceschini 1987](https://academic.oup.com/mnras/article/225/1/155/1007281).
