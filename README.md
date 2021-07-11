@@ -17,11 +17,12 @@ devtools::install_github("kaitlynstrickfaden/FasanoMDKS")
 To use the package, simply input a data frame with an "x" and "y" column (and a "z" column for a 3D test) you want to analyze. You can also set the number of randomizations to perform and the desired alpha level. A progress bar will keep track of progress through the randomizations.
 
 ```
-xy <- data.frame(x = sample(c(1:100),50), y = sample(c(1:100),50))
-Fasano_2DKS(xy, rands = 5000, alpha = 0.05)
+xcol <- sample(c(1:100),50)
+ycol <- sample(c(1:100),50)
+zcol <- sample(c(1:100),50)
 
-xyz <- data.frame(x = sample(c(1:100),50), y = sample(c(1:100),50), z = sample(c(1:100),50))
-Fasano_3DKS(xyz, rands = 5000, alpha = 0.05)
+Fasano_2DKS(xcol, ycol, rands = 5000, alpha = 0.05)
+Fasano_3DKS(xcol, ycol, zcol, rands = 5000, alpha = 0.05)
 ```
 
 The `Fasano_2DKS` and `Fasano_3DKS` functions will output a data frame of summary values and statistics containing the maximum D-value; the x, y, and z values at the maximum D-value; the minimum and maximum x, y, and z values for the statistically-significant observations; and the p-value.
