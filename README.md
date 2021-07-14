@@ -14,7 +14,7 @@ devtools::install_github("kaitlynstrickfaden/FasanoMDKS")
 
 <br>
 
-To use the package, simply input a data frame with an "x" and "y" column (and a "z" column for a 3D test) you want to analyze. You can also set the number of randomizations to perform and the desired alpha level. A progress bar will keep track of progress through the randomizations.
+To use the package, simply input "x" and "y" vectors (and a "z" vector for a 3D test) of data you want to analyze. You can also set the number of randomizations to perform and the desired alpha level. A progress bar will keep track of progress through the randomizations.
 
 ```
 xcol <- sample(c(1:100),50)
