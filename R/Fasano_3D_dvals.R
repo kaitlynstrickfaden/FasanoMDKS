@@ -20,7 +20,7 @@ Fasano_3D_dvals <- function(xcol, ycol, zcol) {
     stop("xcol, ycol, and zcol must be the same length")
   }
 
-  n <- nrow(xy)  # sample size (repeated here to allow quadrants to run as its own function)
+  n <- length(xcol)  # sample size
 
   # store number of values less/greater than a given x/y value
   xl = sapply(xcol, function(x) {length(xcol[xcol < x])}) # all x-values less than the X
