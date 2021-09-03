@@ -11,15 +11,30 @@ Fasano_3DKS(xcol, ycol, zcol, rands = 5000, alpha = 0.05)
 
 \item{ycol}{a vector of y values}
 
-\item{zcol}{a vector of y values}
+\item{zcol}{a vector of z values}
 
 \item{rands}{A numeric indicating how many randomizations to perform. Default is 5000.}
 
 \item{alpha}{A numeric between 0 and 1 for the desired alpha level. Default is 0.05.}
 }
 \value{
-A data frame of summary values and statistics (the maximum D-value; the x, y, and z values at the maximum D-value; the minimum and maximum x, y, and z values for the statistically-significant observations; and the p-value)
+A data frame of summary values and statistics (the maximum D-value; the x, y, z, and p values at the maximum D-value; and the minimum and maximum x, y, and z values for the statistically-significant observations)
 }
 \description{
-Run a three-dimensional Kolmogorov-Smirnov test as defined by [Fasano and Franceschini 1987](https://academic.oup.com/mnras/article/225/1/155/1007281). Allows for specification of the number of randomization to perform and the desired alpha level.
+Run a three-dimensional Kolmogorov-Smirnov test as defined by \href{https://academic.oup.com/mnras/article/225/1/155/1007281}{Fasano and Franceschini 1987}. Allows for specification of the number of randomization to perform and the desired alpha level.
+}
+\examples{
+xcol <- rnorm(10)
+ycol <- rnorm(10)
+zcol <- rnorm(10)
+
+Fasano_3DKS(xcol, ycol, zcol, rands = 2000, alpha = 0.05)
+
+\dontrun{
+xcol <- rnorm(10)
+ycol <- rnorm(10)
+zcol <- rnorm(5)
+
+Fasano_3DKS(xcol, ycol, zcol, rands = 2000, alpha = 0.05)
+}
 }

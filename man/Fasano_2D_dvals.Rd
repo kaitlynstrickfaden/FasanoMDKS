@@ -12,8 +12,21 @@ Fasano_2D_dvals(xcol, ycol)
 \item{ycol}{a vector of y values}
 }
 \value{
-The D-values for each pair of observations as a vector.
+The D-values for each pair of observations as a vector
 }
 \description{
-Find D-values of observations for a two-dimensional Kolmogorov-Smirnov test as defined by [Fasano and Franceschini 1987](https://academic.oup.com/mnras/article/225/1/155/1007281).
+Find D-values of observations for a two-dimensional Kolmogorov-Smirnov test as defined by \href{https://academic.oup.com/mnras/article/225/1/155/1007281}{Fasano and Franceschini 1987}.
+}
+\examples{
+xcol <- rnorm(10)
+ycol <- rnorm(10)
+
+Fasano_2D_dvals(xcol, ycol)
+
+\dontrun{
+xcol <- rnorm(10)
+ycol <- rnorm(5)
+
+Fasano_2D_dvals(xcol, ycol)
+}
 }

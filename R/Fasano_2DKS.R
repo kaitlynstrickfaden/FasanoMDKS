@@ -1,16 +1,28 @@
 
 #' Run a Two-dimensional Kolmogorov-Smirnov Test
 #'
-#' Run a two-dimensional Kolmogorov-Smirnov test as defined by [Fasano and Franceschini 1987](https://academic.oup.com/mnras/article/225/1/155/1007281). Allows for specification of the number of randomization to perform and the desired alpha level.
+#' Run a two-dimensional Kolmogorov-Smirnov test as defined by \href{https://academic.oup.com/mnras/article/225/1/155/1007281}{Fasano and Franceschini 1987}. Allows for specification of the number of randomization to perform and the desired alpha level.
 #'
 #' @importFrom dplyr arrange group_by mutate summarize
-#' @importFrom purrr map
+#' @importFrom purrr map2_dbl pmap_dbl
 #' @import progress
 #' @param xcol a vector of x values
 #' @param ycol a vector of y values
 #' @param rands A numeric indicating how many randomizations to perform. Default is 5000.
 #' @param alpha A numeric between 0 and 1 for the desired alpha level. Default is 0.05.
-#' @return A data frame of summary values and statistics (the maximum D-value, the x and y values at the maximum D-value, the minimum and maximum x and y values for the statistically-significant observations, and the p-value)
+#' @return A data frame of summary values and statistics (the maximum D-value; the x, y, and p values at the maximum D-value; and the minimum and maximum x and y values for the statistically-significant observations)
+#' @examples
+#' xcol <- rnorm(10)
+#' ycol <- rnorm(10)
+#'
+#' Fasano_2DKS(xcol, ycol, rands = 2000, alpha = 0.05)
+#'
+#' \dontrun{
+#' xcol <- rnorm(10)
+#' ycol <- rnorm(5)
+#'
+#' Fasano_3DKS(xcol, ycol, rands = 2000, alpha = 0.05)
+#' }
 #' @export
 #'
 
@@ -53,8 +65,8 @@ Fasano_2DKS <- function(xcol, ycol, rands = 5000, alpha = 0.05) {
         d_rand <- Fasano_2D_dvals(xrand, yrand)           # generate D-values for each 'observation'
 
         d_rand_max <- max(d_rand)                    # find the maximum D-value for this randomization (the observation that generated this would be the 'threshold')
-        d_rand_bigger <- d_rand_max > d_obs    # (functionally) a count of how many observed D-values were >D max from this randomly generated dataset
-        d_rand_sum <- d_rand_sum + d_rand_bigger # this list accumulates the above counts from each loop
+        d_rand_bigger <- d_rand_max > d_obs    # (functionally) a count of how many observed D-values were >D-max from this randomly generated dataset
+        d_rand_sum <- d_rand_sum + d_rand_bigger # accumulates the above counts from each loop
 
         pb$tick()
 
@@ -68,8 +80,8 @@ Fasano_2DKS <- function(xcol, ycol, rands = 5000, alpha = 0.05) {
     ## Combine results of all potential thresholds
     xy_thresh <- data.frame(x = xcol,       # true X-values
                             y = ycol,       # true y-values
-                            d_obs = d_obs, # true D-values
-                            p = p          # true p-values
+                            d_obs = d_obs,  # true D-values
+                            p = p           # true p-values
     )
 
     ## Find "best" XY threshold and associated P-value in the observed dataset
@@ -102,11 +114,11 @@ Fasano_2DKS <- function(xcol, ycol, rands = 5000, alpha = 0.05) {
     return(data.frame(D_Max     = dmax,
                       Best_X    = best_x,
                       Best_Y    = best_y,
+                      P_Value   = format(round(p_value, 4), nsmall = 4),
                       Min_Sig_X = lo_x_val,
                       Max_Sig_X = hi_x_val,
                       Min_Sig_Y = lo_y_val,
-                      Max_Sig_Y = hi_y_val,
-                      P_Value   = format(round(p_value, 4), nsmall = 4))
+                      Max_Sig_Y = hi_y_val)
     )
 
 } # end function

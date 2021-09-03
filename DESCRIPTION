@@ -7,7 +7,7 @@ Authors@R:
             family = "Strickfaden",
             role = c("aut", "cre"),
             email = "kaitlyn.strickfaden@gmail.com",
-            comment = c(ORCID = "YOUR-ORCID-ID"))
+            comment = c(ORCID = "0000-0002-2760-028X"))
 Maintainer: Kaitlyn Strickfaden <kaitlyn.strickfaden@gmail.com>
 Description: This package runs multi-dimensional Kolmogorov-Smirnov (KS) tests.
 License: MIT + file LICENSE
