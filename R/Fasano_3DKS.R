@@ -1,7 +1,7 @@
 
 #' Run a Three-dimensional Kolmogorov-Smirnov Test
 #'
-#' Run a three-dimensional Kolmogorov-Smirnov test as defined by \href{https://academic.oup.com/mnras/article/225/1/155/1007281}{Fasano and Franceschini 1987}. Allows for specification of the number of randomization to perform and the desired alpha level.
+#' Run a three-dimensional Kolmogorov-Smirnov test as defined by Fasano and Franceschini (1987). Allows for specification of the number of randomization to perform and the desired alpha level.
 #'
 #' @importFrom dplyr arrange group_by mutate summarize
 #' @importFrom purrr map2_dbl pmap_dbl
@@ -63,9 +63,9 @@ Fasano_3DKS <- function(xcol, ycol, zcol, rands = 5000, alpha = 0.05) {
 
   for (r in 1:rands) { # for each randomization (total # set by input value 'rands'):
 
-    xrand <- xcol[sample(c(1:n), n, replace = T)] # randomly index X-values (with replacement)
-    yrand <- ycol[sample(c(1:n), n, replace = T)] # randomly index Y-values (with replacement)
-    zrand <- zcol[sample(c(1:n), n, replace = T)] # randomly index Z-values (with replacement)
+    xrand <- xcol[sample(c(1:n), n, replace = F)] # randomly index X-values (without replacement)
+    yrand <- ycol[sample(c(1:n), n, replace = F)] # randomly index Y-values (without replacement)
+    zrand <- zcol[sample(c(1:n), n, replace = F)] # randomly index Z-values (without replacement)
 
     d_rand <- Fasano_3D_dvals(xrand, yrand, zrand)           # generate D-values for each 'observation'
 
@@ -122,10 +122,10 @@ Fasano_3DKS <- function(xcol, ycol, zcol, rands = 5000, alpha = 0.05) {
 
 
   ## Combine results
-  return(data.frame(D_Max     = dmax,
-                    Best_X    = best_x,
-                    Best_Y    = best_y,
-                    Best_Z    = best_z,
+  return(data.frame(DMax      = dmax,
+                    DMax_X    = best_x,
+                    Dmax_Y    = best_y,
+                    Dmax_Z    = best_z,
                     P_Value   = format(round(p_value, 4), nsmall = 4),
                     Min_Sig_X = lo_x_val,
                     Max_Sig_X = hi_x_val,

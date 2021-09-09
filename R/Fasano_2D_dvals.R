@@ -1,7 +1,7 @@
 
 #' Calculate D-values for a Two-dimensional Kolmogorov-Smirnov Test
 #'
-#' Find D-values of observations for a two-dimensional Kolmogorov-Smirnov test as defined by \href{https://academic.oup.com/mnras/article/225/1/155/1007281}{Fasano and Franceschini 1987}.
+#' Find D-values of observations for a two-dimensional Kolmogorov-Smirnov test as defined by Fasano and Franceschini (1987).
 #'
 #' @importFrom purrr map2_dbl pmap_dbl
 #' @param xcol a vector of x values
@@ -20,7 +20,7 @@
 #' Fasano_2D_dvals(xcol, ycol)
 #' }
 #' @export
-#' @export
+#'
 
 
 ## A function to determine D-values
@@ -34,9 +34,9 @@ Fasano_2D_dvals <- function(xcol, ycol) {
 
   # store number of values less/greater than a given x/y value
   xl <- sapply(xcol, function(x) {length(xcol[xcol < x])}) # all x-values less than the X
-  xg <- sapply(xcol, function(x) {length(xcol[xcol > x])})# all x-values greater than the X
+  xg <- sapply(xcol, function(x) {length(xcol[xcol > x])}) # all x-values greater than the X
   yl <- sapply(ycol, function(y) {length(ycol[ycol < y])}) # all y-values less than the Y
-  yg <- sapply(ycol, function(y) {length(ycol[ycol > y])})# all y-values greater than the Y
+  yg <- sapply(ycol, function(y) {length(ycol[ycol > y])}) # all y-values greater than the Y
 
   # store number of values for a given quadrant
   ll <- map2_dbl(xcol,ycol, function(x,y) {length(xcol[xcol < x & ycol < y])}) # <x, <y

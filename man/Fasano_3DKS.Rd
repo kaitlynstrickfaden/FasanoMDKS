@@ -21,7 +21,7 @@ Fasano_3DKS(xcol, ycol, zcol, rands = 5000, alpha = 0.05)
 A data frame of summary values and statistics (the maximum D-value; the x, y, z, and p values at the maximum D-value; and the minimum and maximum x, y, and z values for the statistically-significant observations)
 }
 \description{
-Run a three-dimensional Kolmogorov-Smirnov test as defined by \href{https://academic.oup.com/mnras/article/225/1/155/1007281}{Fasano and Franceschini 1987}. Allows for specification of the number of randomization to perform and the desired alpha level.
+Run a three-dimensional Kolmogorov-Smirnov test as defined by Fasano and Franceschini (1987). Allows for specification of the number of randomization to perform and the desired alpha level.
 }
 \examples{
 xcol <- rnorm(10)

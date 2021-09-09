@@ -25,5 +25,9 @@ Fasano_2DKS(xcol, ycol, rands = 5000, alpha = 0.05)
 Fasano_3DKS(xcol, ycol, zcol, rands = 5000, alpha = 0.05)
 ```
 
-The `Fasano_2DKS` and `Fasano_3DKS` functions will output a data frame of summary values and statistics containing the maximum D-value; the x, y, and z values at the maximum D-value; the minimum and maximum x, y, and z values for the statistically-significant observations; and the p-value.
+The `Fasano_2DKS` and `Fasano_3DKS` functions will output a data frame of summary values and statistics containing the maximum D-value; the x, y, z, and p values at the maximum D-value; and the minimum and maximum x, y, and z values for the statistically-significant observations.
+
+  <!-- badges: start -->
+  [![R-CMD-check](https://github.com/kaitlynstrickfaden/FasanoMDKS/workflows/R-CMD-check/badge.svg)](https://github.com/kaitlynstrickfaden/FasanoMDKS/actions)
+  <!-- badges: end -->
 

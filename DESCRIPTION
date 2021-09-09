@@ -1,16 +1,29 @@
 Package: FasanoMDKS
 Type: Package
-Title: Fasano Multi-dimensional Kolmogorov-Smirnov Tests
+Title: Fasano and Franceschini (1987) Multi-Dimensional Kolmogorov-Smirnov Tests
 Version: 0.1.0
 Authors@R: 
-    person(given = "Kaitlyn",
+    c(person(given = "Kaitlyn",
             family = "Strickfaden",
             role = c("aut", "cre"),
             email = "kaitlyn.strickfaden@gmail.com",
-            comment = c(ORCID = "0000-0002-2760-028X"))
+            comment = c(ORCID = "0000-0002-2760-028X")),
+      person(given = "David",
+            family = "Glover",
+            role = c("aut", "ctb"),
+            email = "dave.glover@illinois.gov",
+            comment = c()),
+      person(given = "Nick",
+            family = "Voss",
+            role = c("aut", "ctb"),
+            email = "nvoss@uidaho.edu",
+            comment = c())
+            )
 Maintainer: Kaitlyn Strickfaden <kaitlyn.strickfaden@gmail.com>
-Description: This package runs multi-dimensional Kolmogorov-Smirnov (KS) tests.
+Description: Runs two-dimensional and three-dimensional Kolmogorov-Smirnov (KS) tests as defined by Fasano and Franceschini (1987). The 2DKS and 3DKS output the maximum d-value, the x and y (and z for 3D tests) values of the maximum d-value, and the significant x and y (and z) values. This package uses functions from dplyr, progress, and purrr, so please download these packages before using FasanoMDKS. 
 License: MIT + file LICENSE
+URL: <https://github.com/kaitlynstrickfaden/FasanoMDKS>
+References: Fasano, G. and Franceschini, A. (1987). <doi:10.1093/mnras/225.1.155>. A multidimensional version of the Kolmogorov-Smirnov test. Monthly Notices of the Royal Astronomical Society 225:155-170.
 Encoding: UTF-8
 LazyData: true
 Imports:
@@ -18,3 +31,6 @@ Imports:
     progress,
     purrr
 RoxygenNote: 7.1.1
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

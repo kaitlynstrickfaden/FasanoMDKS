@@ -17,7 +17,7 @@ Fasano_3D_dvals(xcol, ycol, zcol)
 The D-values for each set of observations as a vector
 }
 \description{
-Find D-values of observations for a three-dimensional Kolmogorov-Smirnov test as defined by \href{https://academic.oup.com/mnras/article/225/1/155/1007281}{Fasano and Franceschini 1987}.
+Find D-values of observations for a three-dimensional Kolmogorov-Smirnov test as defined by Fasano and Franceschini (1987).
 }
 \examples{
 xcol <- rnorm(10)

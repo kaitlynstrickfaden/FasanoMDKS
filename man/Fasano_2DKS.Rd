@@ -19,7 +19,7 @@ Fasano_2DKS(xcol, ycol, rands = 5000, alpha = 0.05)
 A data frame of summary values and statistics (the maximum D-value; the x, y, and p values at the maximum D-value; and the minimum and maximum x and y values for the statistically-significant observations)
 }
 \description{
-Run a two-dimensional Kolmogorov-Smirnov test as defined by \href{https://academic.oup.com/mnras/article/225/1/155/1007281}{Fasano and Franceschini 1987}. Allows for specification of the number of randomization to perform and the desired alpha level.
+Run a two-dimensional Kolmogorov-Smirnov test as defined by by Fasano and Franceschini (1987). Allows for specification of the number of randomization to perform and the desired alpha level.
 }
 \examples{
 xcol <- rnorm(10)
@@ -31,6 +31,6 @@ Fasano_2DKS(xcol, ycol, rands = 2000, alpha = 0.05)
 xcol <- rnorm(10)
 ycol <- rnorm(5)
 
-Fasano_3DKS(xcol, ycol, rands = 2000, alpha = 0.05)
+Fasano_2DKS(xcol, ycol, rands = 2000, alpha = 0.05)
 }
 }

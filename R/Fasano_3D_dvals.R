@@ -1,7 +1,7 @@
 
 #' Calculate D-values for a Three-dimensional Kolmogorov-Smirnov Test
 #'
-#' Find D-values of observations for a three-dimensional Kolmogorov-Smirnov test as defined by \href{https://academic.oup.com/mnras/article/225/1/155/1007281}{Fasano and Franceschini 1987}.
+#' Find D-values of observations for a three-dimensional Kolmogorov-Smirnov test as defined by Fasano and Franceschini (1987).
 #'
 #' @importFrom purrr map2_dbl pmap_dbl
 #' @param xcol a vector of x values
